@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+
+  apache:
+    build:
+      context: ./apache
+    container_name: apache-container
+    ports:
+      - "80:80"
+
+  flask:
+    build:
+      context: ./flask
+    container_name: flask-container
+    ports:
+      - "5000:5000"
